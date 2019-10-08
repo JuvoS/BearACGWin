@@ -1,16 +1,16 @@
 <template>
-  <div class="orion">
-    <div class="orion-header">
-      <div class="orion-header-title">Drag</div>
-      <div class="orion-header-btngroup">
+  <div class="bear">
+    <div class="bear-header">
+      <div class="bear-header-title">Drag</div>
+      <div class="bear-header-btngroup">
         <Icon
-          class="orion-header-btngroup-handle"
+          class="bear-header-btngroup-handle"
           :size="22"
           type="ios-remove"
           @click="changeWinMin()"
         />
         <Icon
-          class="orion-header-btngroup-handle"
+          class="bear-header-btngroup-handle"
           :size="16"
           type="ios-browsers-outline"
           v-if="maxState"
@@ -18,7 +18,7 @@
         />
 
         <Icon
-          class="orion-header-btngroup-handle"
+          class="bear-header-btngroup-handle"
           :size="16"
           type="ios-square-outline"
           v-else
@@ -28,28 +28,30 @@
         <!-- <Button @click="changeWinHide(true)">显示</Button>
         <Button @click="changeWinHide(false)">隐藏</Button>-->
         <Icon
-          class="orion-header-btngroup-handle"
+          class="bear-header-btngroup-handle"
           :size="24"
           type="ios-close"
           @click="changeWinClose()"
         />
       </div>
     </div>
-    <div class="orion-content">
-      <div class="orion-content-left">
+    <div class="bear-content">
+      <div class="bear-content-left">
         <div v-for="(item,key) in routerRes" :key="key" @click="onRouterPush(item.path)">
           <span>{{item.name}}</span>
         </div>
+        <Button @click="changeWinDirect(true)">窗口大</Button>
+        <Button @click="changeWinDirect(false)">窗口小</Button>
       </div>
-      <div class="orion-content-wrapper">
+      <div class="bear-content-wrapper">
         <router-view></router-view>
       </div>
     </div>
-    <div class="orion-footer">
-      <span class="orion-footer-version">orion @verson 0.0.1</span>
-      <span class="orion-footer-copyright">
+    <div class="bear-footer">
+      <span class="bear-footer-version">BearACGWin @verson 0.0.1</span>
+      <span class="bear-footer-copyright">
         <!-- Copyright © 2019 - 2119 JuvoS. All Rights Reserved.JuvoS / License MIT -->
-        Copyright © 2019 JuvoS All Rights Reserved.
+        Copyright © 2019 ACG All Rights Reserved.
       </span>
     </div>
   </div>
@@ -88,8 +90,8 @@ export default {
     changeWinClose() {
       ipcRenderer.send("close");
     },
-    changeWinDirect() {
-      ipcRenderer.send("direct", false);
+    changeWinDirect(v) {
+      ipcRenderer.send("window", v);
     }
     // changeWinHide(v) {
     //   if (v) return ipcRenderer.send("show");
@@ -100,7 +102,7 @@ export default {
 </script>
 
 <style>
-.orion {
+.bear {
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -110,7 +112,7 @@ export default {
   color: rgb(234, 234, 234);
   background: rgb(40, 40, 40);
 }
-.orion-header {
+.bear-header {
   width: 100%;
   height: 30px;
   background: rgb(30, 30, 30);
@@ -118,49 +120,49 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-.orion-header-title {
+.bear-header-title {
   flex: 1;
   -webkit-app-region: drag;
 }
-.orion-header-btngroup {
+.bear-header-btngroup {
   display: flex;
   color: #ffffff;
   display: flex;
   align-items: center;
 }
-.orion-header-btngroup-handle {
+.bear-header-btngroup-handle {
   cursor: hand;
   cursor: pointer;
   margin: 0 2px;
 }
-.orion-content {
+.bear-content {
   width: 100%;
   height: calc(100vh - 80px);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.orion-content-left {
+.bear-content-left {
   width: 40px;
   height: 100%;
   overflow: auto;
   /* overflow-y: auto; */
   background: rgb(38, 38, 38);
 }
-.orion-content-wrapper {
+.bear-content-wrapper {
   flex: 1;
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
   /* background: rgb(30, 30, 30); */
 }
-.orion-content-right {
+.bear-content-right {
   width: 300px;
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
 }
-.orion-footer {
+.bear-footer {
   width: 100%;
   height: 25px;
   overflow: hidden;
@@ -171,11 +173,11 @@ export default {
   justify-content: space-between;
   font-size: 12px;
 }
-.orion-footer-version {
+.bear-footer-version {
   line-height: 25px;
   padding-left: 10px;
 }
-.orion-footer-copyright {
+.bear-footer-copyright {
   line-height: 25px;
   padding-right: 20px;
 }

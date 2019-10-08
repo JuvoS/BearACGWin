@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, screen } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -13,12 +13,14 @@ const winURL = process.env.NODE_ENV === 'development' ?
     `http://localhost:9080` :
     `file://${__dirname}/index.html`
 
+
+
 function createWindow() {
     /**
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        width: 960,
+        width: 960, //690
         height: 650,
         transparent: true,
         frame: false,
@@ -35,9 +37,13 @@ function createWindow() {
     ipcMain.on('max', e => mainWindow.maximize());
     ipcMain.on('unmax', e => mainWindow.unmaximize());
     ipcMain.on('close', e => mainWindow.close());
-    ipcMain.on('direct', e => {
-        console.log(e);
-        mainWindow.resize(420, 650)
+    ipcMain.on('window', (e, v) => {
+        let size = screen.getPrimaryDisplay().workAreaSize
+        let screenWidth = parseInt(size.width * 0.9)
+        let screenHeight = parseInt(size.height * 0.9)
+
+        if (v) { mainWindow.setSize(420, screenHeight); } else { mainWindow.setSize(screenWidth, 650) }
+        mainWindow.center()
     });
 
 }
