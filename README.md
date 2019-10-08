@@ -1,6 +1,6 @@
-# orion
+# BearACGWin
 
-> Orion Conquest Project
+> BearACGWin Project
 
 #### Build Setup
 
