@@ -101,7 +101,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+@import "../styles/color.less";
+
 .bear {
   width: 100%;
   height: 100vh;
@@ -109,13 +111,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: rgb(234, 234, 234);
-  background: rgb(40, 40, 40);
+  color: @basicColor;
+  background: #f4f4f4;
 }
 .bear-header {
   width: 100%;
   height: 30px;
-  background: rgb(30, 30, 30);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -126,7 +129,7 @@ export default {
 }
 .bear-header-btngroup {
   display: flex;
-  color: #ffffff;
+  color: @basicColor;
   display: flex;
   align-items: center;
 }
@@ -137,7 +140,7 @@ export default {
 }
 .bear-content {
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 58px);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -147,7 +150,7 @@ export default {
   height: 100%;
   overflow: auto;
   /* overflow-y: auto; */
-  background: rgb(38, 38, 38);
+  background: #ffffff;
 }
 .bear-content-wrapper {
   flex: 1;
@@ -167,7 +170,9 @@ export default {
   height: 25px;
   overflow: hidden;
 
-  background: rgb(74, 74, 74);
+  // background: #181818;
+  background: #fff;
+  box-shadow: 0 -1px 3px rgba(26, 26, 26, 0.1);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

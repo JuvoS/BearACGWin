@@ -1,0 +1,59 @@
+body {
+  font-family: PingFangSC, helvetica neue, hiragino sans gb, arial,
+    microsoft yahei ui, microsoft yahei, simsun, sans-serif !important;
+}
+
+[class^="bear-"] {
+  box-sizing: border-box;
+}
+div.bear {
+  &-grid {
+    margin-right: auto;
+    margin-left: auto;
+    &-fluid {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    &-row {
+      min-height: 1px;
+      clear: both;
+    }
+    &-row:before,
+    &-row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .bear-grid {
+    width: 1200px;
+    min-width: 0;
+  }
+}
+@media (min-width: 992px) {
+  .bear-grid {
+    width: auto;
+    min-width: 0;
+  }
+}
+@media (min-width: 768px) {
+  .bear-grid {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background-color: none;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #555;
+}

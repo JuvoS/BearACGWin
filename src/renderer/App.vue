@@ -6,20 +6,12 @@
 
 <script>
 export default {
-  name: "vueele"
+  name: "BearACG"
 };
 </script>
 
-<style>
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-::-webkit-scrollbar-track {
-  background-color: none;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #555;
-}
+<style lang="less">
+@import "./styles/bear.less";
+@import "./styles/ace.css";
+@import "./styles/acein.css";
 </style>
