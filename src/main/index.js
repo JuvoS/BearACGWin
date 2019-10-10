@@ -1,19 +1,20 @@
-import { app, BrowserWindow, ipcMain, screen } from 'electron'
+import { app, BrowserWindow, ipcMain, screen } from "electron";
 
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
-if (process.env.NODE_ENV !== 'development') {
-    global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+if (process.env.NODE_ENV !== "development") {
+    global.__static = require("path")
+        .join(__dirname, "/static")
+        .replace(/\\/g, "\\\\");
 }
 
-let mainWindow
-const winURL = process.env.NODE_ENV === 'development' ?
+let mainWindow;
+const winURL =
+    process.env.NODE_ENV === "development" ?
     `http://localhost:9080` :
-    `file://${__dirname}/index.html`
-
-
+    `file://${__dirname}/index.html`;
 
 function createWindow() {
     /**
@@ -24,43 +25,46 @@ function createWindow() {
         height: 650,
         transparent: true,
         frame: false,
-        useContentSize: true,
-    })
-
-    mainWindow.loadURL(winURL)
-
-    mainWindow.on('closed', () => {
-        mainWindow = null
-    })
-
-    ipcMain.on('min', e => mainWindow.minimize());
-    ipcMain.on('max', e => mainWindow.maximize());
-    ipcMain.on('unmax', e => mainWindow.unmaximize());
-    ipcMain.on('close', e => mainWindow.close());
-    ipcMain.on('window', (e, v) => {
-        let size = screen.getPrimaryDisplay().workAreaSize
-        let screenWidth = parseInt(size.width * 0.9)
-        let screenHeight = parseInt(size.height * 0.9)
-
-        if (v) { mainWindow.setSize(420, screenHeight); } else { mainWindow.setSize(screenWidth, 650) }
-        mainWindow.center()
+        useContentSize: true
     });
 
+    mainWindow.loadURL(winURL);
+
+    mainWindow.on("closed", () => {
+        mainWindow = null;
+    });
+
+    ipcMain.on("min", e => mainWindow.minimize());
+    ipcMain.on("max", e => mainWindow.maximize());
+    ipcMain.on("unmax", e => mainWindow.unmaximize());
+    ipcMain.on("close", e => mainWindow.close());
+    ipcMain.on("window", (e, v) => {
+        let size = screen.getPrimaryDisplay().workAreaSize;
+        let screenWidth = parseInt(size.width * 0.9);
+        let screenHeight = parseInt(size.height * 0.9);
+
+        if (v) {
+            mainWindow.setSize(420, screenHeight);
+        } else {
+            mainWindow.setSize(screenWidth, 650);
+        }
+        mainWindow.center();
+    });
 }
 
-app.on('ready', createWindow)
+app.on("ready", createWindow);
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
+app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+        app.quit();
     }
-})
+});
 
-app.on('activate', () => {
+app.on("activate", () => {
     if (mainWindow === null) {
-        createWindow()
+        createWindow();
     }
-})
+});
 
 /**
  * Auto Updater

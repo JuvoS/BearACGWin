@@ -3,7 +3,7 @@
     <div class="bear-header">
       <div class="bear-header-title">Drag</div>
       <div class="bear-header-btngroup">
-        <Icon
+        <!-- <Icon
           class="bear-header-btngroup-handle"
           :size="22"
           type="ios-remove"
@@ -23,16 +23,18 @@
           type="ios-square-outline"
           v-else
           @click="changeWinMax(true)"
-        />
-
+        />-->
+        <i class="el-icon-ice-cream-round" v-if="maxState" @click="changeWinMax(false)"></i>
+        <i class="el-icon-ice-cream-square" v-else @click="changeWinMax(true)"></i>
+        <i class="el-icon-close" @click="changeWinClose()"></i>
         <!-- <Button @click="changeWinHide(true)">显示</Button>
         <Button @click="changeWinHide(false)">隐藏</Button>-->
-        <Icon
+        <!-- <Icon
           class="bear-header-btngroup-handle"
           :size="24"
           type="ios-close"
           @click="changeWinClose()"
-        />
+        />-->
       </div>
     </div>
     <div class="bear-content">
@@ -40,8 +42,9 @@
         <div v-for="(item,key) in routerRes" :key="key" @click="onRouterPush(item.path)">
           <span>{{item.name}}</span>
         </div>
-        <Button @click="changeWinDirect(true)">窗口大</Button>
-        <Button @click="changeWinDirect(false)">窗口小</Button>
+        <!-- <Button @click="changeWinDirect(true)">窗口大</Button>
+        <Button @click="changeWinDirect(false)">窗口小</Button>-->
+        <el-button type="primary" icon="el-icon-search">搜索</el-button>
       </div>
       <div class="bear-content-wrapper">
         <router-view></router-view>
